@@ -21,7 +21,7 @@ export const parseConfig = async () => {
         required_error: "File path is required use --f <file path>",
       })
       .optional()
-      .default("./i18n-llm-config.json"),
+      .default("./auto-i18n-config.json"),
   });
 
   type Args = z.infer<typeof argsValidator>;
