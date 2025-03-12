@@ -1,0 +1,19 @@
+{
+  "Hello": "Hello",
+  "homepage": {
+    "text": {
+      "How are you?": "How are you?"
+    },
+    "tile": {
+      "HELLO WORLD": "HELLO WORLD"
+    }
+  },
+  "settings": {
+    "Account": "Account",
+    "Language": "Language"
+  },
+  "upgrade-plan": {
+    "Thank you for upgrading your plan!": "Thank you for upgrading your plan!",
+    "Upgrade your plane to unlock beautifull features": "Upgrade your plane to unlock beautifull features"
+  }
+}

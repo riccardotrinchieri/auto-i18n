@@ -1,0 +1,6 @@
+{
+  "localesPath": "./messages",
+  "mainLang": "en",
+  "srcFolder": "./src/app",
+  "targetLangs": ["it", "fr"]
+}

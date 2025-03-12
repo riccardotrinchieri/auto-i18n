@@ -1,0 +1,16 @@
+{
+  "homepage": {
+    "Hello world": "Hello world"
+  },
+  "homepage2": {
+    "Hi riccardo": "Hi riccardo"
+  },
+  "settings": {
+    "Account": "Account",
+    "Language": "Language"
+  },
+  "upgrade-plan": {
+    "Thank you for upgrading your plan!": "Thank you for upgrading your plan!",
+    "Upgrade your plane to unlock beautifull features!": "Upgrade your plane to unlock beautifull features!"
+  }
+}

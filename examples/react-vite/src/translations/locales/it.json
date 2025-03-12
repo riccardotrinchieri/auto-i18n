@@ -1,0 +1,19 @@
+{
+  "Hello": "Ciao",
+  "homepage": {
+    "text": {
+      "How are you?": "Come stai?"
+    },
+    "tile": {
+      "HELLO WORLD": "CIAO MONDO"
+    }
+  },
+  "settings": {
+    "Account": "Account",
+    "Language": "Lingua"
+  },
+  "upgrade-plan": {
+    "Thank you for upgrading your plan!": "Grazie per aver aggiornato il tuo piano!",
+    "Upgrade your plane to unlock beautifull features": "Aggiorna il tuo aereo per sbloccare bellissime funzionalità"
+  }
+}

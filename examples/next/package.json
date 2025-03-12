@@ -1,0 +1,32 @@
+{
+  "name": "next",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "i18n-llm": "link:../../../../snap/code/184/.local/share/pnpm/global/5/node_modules/i18n-llm",
+    "next": "15.2.0",
+    "next-intl": "^3.26.5",
+    "react-dom": "^19.0.0",
+    "react-i18next": "^15.4.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.2.0",
+    "typescript": "^5"
+  },
+  "pnpm": {
+    "overrides": {
+      "i18n-llm": "link:../../../../snap/code/184/.local/share/pnpm/global/5/node_modules/i18n-llm"
+    }
+  }
+}

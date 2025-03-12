@@ -1,0 +1,6 @@
+{
+  "localesPath": "./src/translations/locales",
+  "mainLang": "en",
+  "srcFolder": "./src",
+  "targetLangs": ["it", "fr"]
+}

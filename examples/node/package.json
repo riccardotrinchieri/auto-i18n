@@ -1,0 +1,21 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "i18next": "^24.2.2",
+    "tsx": "^4.19.3"
+  },
+  "pnpm": {
+    "overrides": {
+      "i18n-llm": "link:../../../../snap/code/184/.local/share/pnpm/global/5/node_modules/i18n-llm"
+    }
+  }
+}
