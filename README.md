@@ -1,6 +1,6 @@
-# i18n-llm
+# auto-i18n
 
-**i18n-llm** is an internationalization tool designed to automatically extract the primary language locale directly from your codebase and leveraging the LLMs to generete additional locale files for multiple target languages, saving you time and effort in the localization process.
+**auto-i18n** is an internationalization tool designed to automatically extract the primary language locale directly from your codebase and leverage LLMs to generate additional locale files for multiple target languages, saving you time and effort in the localization process.
 
 1. [Usage Guide](#usage-guide)
 2. [Features](#features)
@@ -10,33 +10,32 @@
 
 ## Usage Guide
 
-After installing the package create a **i18n-llm-config.json** in the root of the project.
+After installing the package, create a **auto-i18n-config.json** in the root of the project.
 
 ```javascript
-/*i18n-llm-config.json*/
+/*auto-i18n-config.json*/
 
 {
-  /*The path to the folder that will contain your locales*/
+  /* The path to the folder that will contain your locales */
   "localesPath": "./src/translations/locales",
 
-  /* The main language of your project i.e. en"*/
+  /* The main language of your project, e.g., "en" */
   "mainLang": "en",
-
 
   /**
   * The folder containing your code.
-  * All .js, .ts .jsx and .tsx files in this folder will be evaluated
+  * All .js, .ts, .jsx, and .tsx files in this folder will be evaluated
   * for the main locale file automatic extraction
   **/
   "srcFolder": "./src",
 
-  /* The target languages the main locale file needs to be translated into*/
+  /* The target languages the main locale file needs to be translated into */
   "targetLangs": ["it", "fr"],
 
   /**
-  * Optional, default to 5.
-  * Determine how many texts will be sent for translation in a single LLM call
-  * Useful for reducing token usage, avoiding rate limits or avoiding exceeding context limits
+  * Optional, defaults to 5.
+  * Determines how many texts will be sent for translation in a single LLM call.
+  * Useful for reducing token usage, avoiding rate limits, or exceeding context limits.
   **/
   "translationWorkUnitSize": 5,
 }
@@ -45,81 +44,80 @@ After installing the package create a **i18n-llm-config.json** in the root of th
 Add to your **.env**
 
 ```
-OPENAI_API_KEY=...YOUR OPEN AI KEY...
+OPENAI_API_KEY=...YOUR OPENAI KEY...
 ```
 
-> **Note:** You can choose any **i18n** library, but it is important that such lib use a function named **t** to perform translations. If that is not the case you need to wrap the translation function in a function named **t**.
+> **Note:** You can choose any **i18n** library, but it is important that such a library uses a function named **t** to perform translations. If that is not the case, you need to wrap the translation function in a function named **t**.
 
-When using your **i18n** library you need to adhere to this syntax in order for the project to work
+When using your **i18n** library, you need to adhere to this syntax for the project to work:
 
 ```javascript
-t("Homepage-->This is the tile of my homepage");
+t("Homepage-->This is the title of my homepage");
 ```
 
-During the **extraction** process **-->** will be evaluated as a key separator. Supposing **en** is the main language in the config file the extraction process will generate the following JSON
+During the **extraction** process, **-->** will be evaluated as a key separator. Assuming **en** is the main language in the config file, the extraction process will generate the following JSON:
 
 ```javascript
 /*en.json*/
 
 {
   "Homepage": {
-    "This is the tile of my homepage": "This is the tile of my homepage"
+    "This is the title of my homepage": "This is the title of my homepage"
   }
 }
 ```
 
-> **Note:** In order to make the process as automatic as possible the last piece of the key needs to be the translation in the main language itself
+> **Note:** To make the process as automatic as possible, the last piece of the key needs to be the translation in the main language itself.
 
-To run the extraction and translation process
+To run the extraction and translation process:
 
 ```
-npx i18n-llm
+npx auto-i18n
 
 //or
 
-pnpm i18n-llm
+pnpm auto-i18n
 
 // Use --f path/to/config to specify the path to the config file if not located in the default path
-
 ```
 
 ## Features
 
 - [x] ⚙️ Automatic extraction of the main locale file directly from the codebase.
-- [x] ⚙️ Automatic translation of the extract locale file in multiple target languages.
-- [x] ♻️ Incremental updates. On subsequent runs, only new non translated keys will be considered.
-- [x] 🗑️ Automatic removal of the unused translation keys.
-- [x] 🚗 Multi-thread translation process. "One Worker thread per language is used to speed up translations.
-- [x] 📦 Translations batching: decide how many texts will be sent for translation in a single LLM call.
+- [x] ⚙️ Automatic translation of the extracted locale file into multiple target languages.
+- [x] ♻️ Incremental updates. On subsequent runs, only new non-translated keys will be considered.
+- [x] 🗑️ Automatic removal of unused translation keys.
+- [x] 📦 Translation batching: decide how many texts will be sent for translation in a single LLM call.
 - [ ] Customizable prompt.
-- [ ] Multi model support.
+- [ ] Multi-model support.
 - [ ] Customizable key separator.
+- [ ] Support for "translate-only" / "extract-only" mode.
 
-It is also possible to manually fix any translation error made by the LLM without side effects
+It is also possible to manually fix any translation errors made by the LLM without side effects.
 
 ## Installation
 
 ```
-npm install --save i18n-llm
+npm install --save auto-i18n
 
 //or
 
-pnpm add i18n-llm
+pnpm add auto-i18n
 ```
 
 ## React Setup
 
-You may succeeding in setting up this package with a different **i18n** lib. The following is to be considered just one possible approach.
+You may succeed in setting up this package with a different **i18n** library. The following is to be considered just one possible approach.
 
-Install [**i18next**](https://www.npmjs.com/package/i18next), [**i18next-browser-languagedetector**](https://www.npmjs.com/package/i18next-browser-languagedetector/v/3.0.0) , [**react-i18next**](https://www.npmjs.com/package/react-i18next).
+Install [**i18next**](https://www.npmjs.com/package/i18next), [**i18next-browser-languagedetector**](https://www.npmjs.com/package/i18next-browser-languagedetector/v/3.0.0), and [**react-i18next**](https://www.npmjs.com/package/react-i18next).
 
-See [**Usage Guide**](#usage-guide) to configure i18n-llm.
+See the [**Usage Guide**](#usage-guide) to configure auto-i18n.
 
-Create a folder **src/translations**, add the locale folder **src/translations/locales**, add the i18next init file **src/translations/i18n.(ts|js)** and configure it as follows:
+Create a folder **src/translations**, add the locale folder **src/translations/locales**, add the i18next init file **src/translations/i18n.(ts|js)**, and configure it as follows:
 
-> **Note:** Change fallbackLng, supportedLngs, resources and locales imports as needed.
+> **Note:** Change fallbackLng, supportedLngs, resources, and locales imports as needed.
 
-> **Note:** Locales import do not exists previous the first execution of i18n-llm so you may receive an error. Run the i18n-llm executable to fix it.
+> **Note:** Locales imports do not exist before the first execution of auto-i18n, so you may receive an error. Run the auto-i18n executable to fix it.
 
 ```JSX
 import i18n from "i18next";
@@ -149,19 +147,18 @@ i18n
     fallbackLng: "en",
     supportedLngs: ["en", "it", "fr"],
     keySeparator: "-->",
-    nsSeparator: "==>",
   });
 
 export default i18n;
 ```
 
-In you **React** code
+In your **React** code:
 
 ```JSX
 /*App.tsx*/
 
 import { useTranslation } from "react-i18next";
-import "./translations/i18n"; /*Import just once in the root of the project*/
+import "./translations/i18n"; /* Import just once in the root of the project */
 
 function App() {
   const { t } = useTranslation();
@@ -170,7 +167,6 @@ function App() {
     <>
       <div>{t("Hello")}</div>
       <div>{t("homepage-->text-->How are you?")}</div>
-
       <div>{t("settings-->Language")}</div>
     </>
   );
@@ -181,13 +177,13 @@ export default App;
 
 ## Next JS Setup
 
-You may succeeding in setting up this package with a different i18n lib. The following is to be considered just one possible approach.
+You may succeed in setting up this package with a different i18n library. The following is to be considered just one possible approach.
 
-Install [**next-intl**](https://www.npmjs.com/package/next-intl) and follow the [setup guide](https://next-intl.dev/docs/getting-started/app-router/with-i18n-routing) : **App router with i18n routing**.
+Install [**next-intl**](https://www.npmjs.com/package/next-intl) and follow the [setup guide](https://next-intl.dev/docs/getting-started/app-router/with-i18n-routing): **App router with i18n routing**.
 
-See [**Usage Guide**](#usage-guide) to configure i18n-llm.
+See the [**Usage Guide**](#usage-guide) to configure auto-i18n.
 
-You should now have an **i18n** folder. This folder add the following 4 files.
+You should now have an **i18n** folder. In this folder, add the following 4 files:
 
 ```javascript
 /*decorator.ts*/
@@ -221,7 +217,7 @@ export function useTranslations() {
 }
 ```
 
-> **Note:** We need this wrapper to the original **useTranslationsNextIntl** and **getTranslations** since, at the best of my knowledge, the library does not allow customization of the **key separator** and simply uses "." which will not work with this package that requires key separtor to be "-->" , in addition, this prevent "." from being used in the translation key which is not optimal in the setup of this package. To avoid this limitation the wrapper function threats "$dot" as "." so you may write "$dot" insted of "." in the translation key. (This of course comes with a small overhead)
+> **Note:** We need this wrapper for the original **useTranslationsNextIntl** and **getTranslations** since, to the best of my knowledge, the library does not allow customization of the **key separator** and simply uses "." which will not work with this package that requires the key separator to be "-->". Additionally, this prevents "." from being used in the translation key, which is not optimal in the setup of this package. To avoid this limitation, the wrapper function treats "$dot" as ".", so you may write "$dot" instead of "." in the translation key. (This, of course, comes with a small overhead)
 
 ```javascript
 /*api.ts*/
@@ -230,6 +226,6 @@ export function t(s: string) {
 }
 ```
 
-> **Note:** This identity function will be useful inside API routes if we want to be able to translate API responses i.e. error message. (Also in this case this cause with a small overhead)
+> **Note:** This identity function will be useful inside API routes if we want to be able to translate API responses, e.g., error messages. (Also, in this case, this comes with a small overhead)
 
-Check the [**NextJS example folder**](https://gitlab.com/riccardoluigi.trinchieri/i18n-llm/-/tree/main/examples/next?ref_type=heads) for a minimal working example
+Check the [**NextJS example folder**](https://github.com/riccardotrinchieri/auto-i18n/tree/main/examples/next) for a minimal working example.
